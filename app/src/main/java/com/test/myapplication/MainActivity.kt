@@ -1,8 +1,8 @@
 package com.test.myapplication
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,22 +11,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         logManager.printMsg("출력")
 
-        // Shallow Copy
-        // 단순 대입이라 다른 리스트 값에 영향을 미침
-        var copy1 = ArrayList<String>()
-        copy1.add("A")
-        copy1.add("B")
-        var copy2 = ArrayList<String>()
-        copy2 = copy1
-        copy2.removeAt(1)
+        //shallow copy
+        val userShallow = User("이름이다", 12)
+        val copyShallow = userShallow
+        copyShallow.name = "얕은사람"
+        copyShallow.age = 17
+        Log.d("체크해보자", userShallow.name + userShallow.age.toString() + "\n" + copyShallow.name + copyShallow.age.toString())
 
-        // Deep Copy
-        // 다른 리스트로부터 아이템만 복사해와서 값을 삭제해도 영향을 미치지 않음
-        var copy3 = ArrayList<String>()
-        copy3.add("A")
-        copy3.add("B")
-        var copy4 = ArrayList<String>()
-        copy4.addAll(copy3)
-        copy4.removeAt(1)
+        //deep copy
+        val userDeep = User("이름이다", 12)
+        val copyDeep = userDeep.copy(name = "깊은사람", age = 99)
+        Log.d("체크해보자", userDeep.name + userDeep.age.toString() + "\n" + copyDeep.name + copyDeep.age.toString())
     }
 }
