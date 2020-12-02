@@ -9,12 +9,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        logManager.printMsg("출력")
-        val user = User("user",22)
-        var copyShallow: User = user.clone()
-
-        copyShallow.name = "얕은사람"
-        copyShallow.age = 17
-        Log.d("체크해보자", user.name + user.age.toString() + "\n" + copyShallow.name + copyShallow.age.toString())
+        val addStr = MessageBox("※")
+        val service = PrototypeService()
+        service.register("name", addStr)
+        val text = service.create("name")!!
+        Log.d("체크해보자", text.use("테스트")!!)
     }
 }
