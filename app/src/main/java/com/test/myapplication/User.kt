@@ -1,3 +1,7 @@
 package com.test.myapplication
 
-data class User(var name: String, var age: Int)
+class User(var name: String, var age: Int) : Cloneable {
+    public override fun clone(): User {
+        return User(name = name, age = age)
+    }
+}
