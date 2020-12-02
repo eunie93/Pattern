@@ -2,12 +2,14 @@ package com.test.myapplication
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        logManager.print("출력")
+        logManager.printMsg("출력")
 
         // Shallow Copy
         // 단순 대입이라 다른 리스트 값에 영향을 미침
@@ -26,6 +28,5 @@ class MainActivity : AppCompatActivity() {
         var copy4 = ArrayList<String>()
         copy4.addAll(copy3)
         copy4.removeAt(1)
-
     }
 }
